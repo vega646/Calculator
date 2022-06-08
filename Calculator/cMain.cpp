@@ -34,7 +34,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(30, 3
 	gs->Add(new wxButton(this, -1, wxT("2")), 0, wxEXPAND);
 	gs->Add(new wxButton(this, -1, wxT("3")), 0, wxEXPAND);
 	gs->Add(new wxButton(this, -1, wxT("-")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT(".")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, -1, wxT("c")), 0, wxEXPAND);
 	gs->Add(new wxButton(this, -1, wxT("0")), 0, wxEXPAND);
 	gs->Add(new wxButton(this, -1, wxT("=")), 0, wxEXPAND);
 	gs->Add(new wxButton(this, -1, wxT("+")), 0, wxEXPAND);
