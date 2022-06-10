@@ -14,9 +14,7 @@ public:
 	int h = 5;
 	wxButton** b;
 
-	int* nf = nullptr;
-	bool fc = true;
-
+	wxTextCtrl* tb = new wxTextCtrl(this, 12, wxT("Enter number..."));
 	void OnButtonClicked(wxCommandEvent& evt);
 
 	wxDECLARE_EVENT_TABLE();
