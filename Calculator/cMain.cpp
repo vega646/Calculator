@@ -1,43 +1,59 @@
 #include "cMain.h"
 
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
+EVT_BUTTON(0, cMain::OnButtonClicked)
+EVT_BUTTON(1, cMain::OnButtonClicked)
+EVT_BUTTON(2, cMain::OnButtonClicked)
+EVT_BUTTON(3, cMain::OnButtonClicked)
+EVT_BUTTON(4, cMain::OnButtonClicked)
+EVT_BUTTON(5, cMain::OnButtonClicked)
+EVT_BUTTON(6, cMain::OnButtonClicked)
+EVT_BUTTON(7, cMain::OnButtonClicked)
+EVT_BUTTON(8, cMain::OnButtonClicked)
+EVT_BUTTON(9, cMain::OnButtonClicked)
+EVT_BUTTON(10, cMain::OnButtonClicked)
+EVT_BUTTON(11, cMain::OnButtonClicked)
+EVT_BUTTON(12, cMain::OnButtonClicked)
+EVT_BUTTON(13, cMain::OnButtonClicked)
+EVT_BUTTON(14, cMain::OnButtonClicked)
+EVT_BUTTON(15, cMain::OnButtonClicked)
+EVT_BUTTON(16, cMain::OnButtonClicked)
+EVT_BUTTON(17, cMain::OnButtonClicked)
+EVT_BUTTON(18, cMain::OnButtonClicked)
+EVT_BUTTON(19, cMain::OnButtonClicked)
+EVT_BUTTON(20, cMain::OnButtonClicked)
+EVT_BUTTON(21, cMain::OnButtonClicked)
 wxEND_EVENT_TABLE()
 
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(30, 30), wxSize(800, 600))
 {
-	b = new wxButton * [w * h];
 	wxGridSizer* gs = new wxGridSizer(4, 4, 3, 3);
-	
 
-	nf = new int[w * h];
-
-	wxFont font(24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
-
-	
-	gs->Add(new wxButton(this, -1, wxT("Make\n negative")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 17, wxT("Make\n negative")), 0, wxEXPAND);
 	gs->Add(new wxStaticText(this, -1, wxT("")), 0, wxEXPAND);
-	gs->Add(new wxStaticText(this, -1, wxT("")), 0, wxEXPAND);;
-	gs->Add(new wxTextCtrl(this, -1, wxT("Enter number...")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("hex")), 0, wxEXPAND); 
-	gs->Add(new wxButton(this, -1, wxT("dec")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("bin")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("mod")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("7")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("8")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("9")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("/")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("4")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("5")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("6")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("*")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("1")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("2")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("3")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("-")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("c")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("0")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("=")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, -1, wxT("+")), 0, wxEXPAND);
+	gs->Add(new wxStaticText(this, -1, wxT("")), 0, wxEXPAND);
+	gs->Add(tb, 0, wxEXPAND);
+	gs->Add(new wxButton(this, 18, wxT("hex")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 19, wxT("dec")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 20, wxT("bin")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 21, wxT("mod")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 7, wxT("7")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 8, wxT("8")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 9, wxT("9")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 16, wxT("/")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 4, wxT("4")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 5, wxT("5")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 6, wxT("6")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 15, wxT("*")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 1, wxT("1")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 2, wxT("2")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 3, wxT("3")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 14, wxT("-")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 13, wxT("c")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 0, wxT("0")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 11, wxT("=")), 0, wxEXPAND);
+	gs->Add(new wxButton(this, 10, wxT("+")), 0, wxEXPAND);
+
 
 	this->SetSizer(gs);
 	gs->Layout();
@@ -46,77 +62,144 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(30, 3
 
 cMain::~cMain()
 {
-	delete[]b;
+
 }
 
 void cMain::OnButtonClicked(wxCommandEvent& evt)
 {
-	int x = (evt.GetId() - 10000) % w;
-	int y = (evt.GetId() - 10000) / w;
+	int id = evt.GetId();
 
-
-if (fc)
-{
-	int mines = 30;
-
-	while (mines)
+	switch (id)
 	{
-		int rx = rand() % w;
-		int ry = rand() % h;
+	case 0:
+	{
+		tb->AppendText("0");
+		break;
+	}
+	case 1:
+	{
+		tb->AppendText("1");
+		break;
+	}
+	case 2:
+	{
+		tb->AppendText("2");
+		break;
+	}
+	case 3:
+	{
+		tb->AppendText("3");
+		break;
+	}
+	case 4:
+	{
+		tb->AppendText("4");
+		break;
+	}
+	case 5:
+	{
+		tb->AppendText("5");
+		break;
+	}
+	case 6:
+	{
+		tb->AppendText("6");
+		break;
+	}
+	case 7:
+	{
+		tb->AppendText("7");
+		break;
+	}
+	case 8:
+	{
+		tb->AppendText("8");
+		break;
+	}
+	case 9:
+	{
+		tb->AppendText("9");
+		break;
+	}
+	case 10:
+	{
+		tb->AppendText("+");
+		//+
+		break;
+	}
+	case 11:
+	{
+		tb->AppendText("=");
+		//=
+		break;
+	}
+	case 12:
+	{
+		//textctrl
+		break;
+	}
+	case 13:
+	{
+		tb->AppendText("c");
+		//c
+		break;
+	}
+	case 14:
+	{
+		tb->AppendText("-");
+		//-
+		break;
+	}
+	case 15:
+	{
+		tb->AppendText("*");
+		//*
+		break;
+	}
+	case 16:
+	{
+		tb->AppendText("/");
+		// /
+		break;
+	}
+	case 17:
+	{
+		//make n
+		break;
+	}
+	case 18:
+	{
+		tb->AppendText("hex");
 
-		if (nf[ry * w + rx] == 0 && rx != x && ry != y)
-		{
-			nf[ry * w + rx] = -1;
-			mines--;
-		}
+		//hex
+		break;
+	}
+	case 19:
+	{
+		tb->AppendText("dec");
+
+		//dec 
+		break;
+	}
+	case 20:
+	{
+		tb->AppendText("bin");
+
+		//bin 
+		break;
+	}
+	case 21:
+	{
+		tb->AppendText("mod");
+
+		//mod
+		break;
+	}
 
 	}
-	fc = false;
-}
-
-b[y * w + x]->Enable(false);
-
-if (nf[y * w + x] == -1)
-{
-	wxMessageBox("GAME OVER!");
-	fc = true;
-
-	for (int i = 0; i < w; i++)
-	{
-		for (int y = 0; y < h; y++)
-		{
-			nf[y * w + i] = 0;
-			b[y * w + i]->SetLabel("");
-			b[y * w + i]->Enable(true);
-		}
-	}
-}
-else
-{
-	int count = 0;
-
-	for (int o = -1; o < 2; o++)
-	{
-		for (int u = -1; u < 2; u++)
-		{
-			if (x + o >= 0 && x + o < w && y + u >= 0 && y + u < h)
-			{
-				if (nf[(y + u) * w + (x + o)] == -1)
-				{
-					count++;
-				}
-			}
-		}
-
-		if (count > 0)
-		{
-			b[y * w + x]->SetLabel(std::to_string(count));
-		}
-
-	}
-}
+	//evt.GetEventobject // cast// wxbutton // getlabel
 
 
-evt.Skip();
-	
+	evt.Skip();
+
 }
