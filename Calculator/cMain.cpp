@@ -1,4 +1,7 @@
 #include "cMain.h"
+#include <iostream>
+#include "ButtonFactory.h"
+
 
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(0, cMain::OnButtonClicked)
@@ -25,38 +28,27 @@ EVT_BUTTON(20, cMain::OnButtonClicked)
 EVT_BUTTON(21, cMain::OnButtonClicked)
 wxEND_EVENT_TABLE()
 
-cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(30, 30), wxSize(800, 600))
+cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(-1, -1), wxSize(600, 550))
 {
-	wxGridSizer* gs = new wxGridSizer(4, 4, 3, 3);
+	ButtonFactory factory;
+	gs = new wxGridSizer(5, 5, 3, 3);
 
-	gs->Add(new wxButton(this, 17, wxT("Make\n negative")), 0, wxEXPAND);
-	gs->Add(new wxStaticText(this, -1, wxT("")), 0, wxEXPAND);
-	gs->Add(new wxStaticText(this, -1, wxT("")), 0, wxEXPAND);
-	gs->Add(tb, 0, wxEXPAND);
-	gs->Add(new wxButton(this, 18, wxT("hex")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 19, wxT("dec")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 20, wxT("bin")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 21, wxT("mod")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 7, wxT("7")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 8, wxT("8")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 9, wxT("9")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 16, wxT("/")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 4, wxT("4")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 5, wxT("5")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 6, wxT("6")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 15, wxT("*")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 1, wxT("1")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 2, wxT("2")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 3, wxT("3")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 14, wxT("-")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 13, wxT("c")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 0, wxT("0")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 11, wxT("=")), 0, wxEXPAND);
-	gs->Add(new wxButton(this, 10, wxT("+")), 0, wxEXPAND);
+	sizer = new wxBoxSizer(wxVERTICAL);
 
+	display = new wxTextCtrl(this, -1, wxT(""), wxPoint(-1, -1),
+		wxSize(100, 100), wxTE_RIGHT);
 
-	this->SetSizer(gs);
-	gs->Layout();
+	sizer->Add(display, 0, wxEXPAND | wxTOP | wxBOTTOM, 4);
+	int id[22]{ 17, 18, 19, 20, 21,7, 8, 9, 16, 4, 5, 6, 15, 1, 2, 3, 14, 13, 0, 11, 10 };
+	wxString label[22]{ "Make negative", "hex", "dec", "bin", "mod", "7", "8", "9", "/", "*", "5", "6", "4", "c", "-", "1", "2", "3", "+", "=", "0"};
+
+	for (int i = 0; i < 22; i++)
+	{
+		factory.CreateButton(gs, this, id[i], label[i]);
+	}
+
+	sizer->Add(gs, 1, wxEXPAND); 
+	this->SetSizer(sizer);
 
 }
 
@@ -73,63 +65,63 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 	case 0:
 	{
-		tb->AppendText("0");
+		display->AppendText("+");
 		break;
 	}
 	case 1:
 	{
-		tb->AppendText("1");
+		display->AppendText("c");
 		break;
 	}
 	case 2:
 	{
-		tb->AppendText("2");
+		display->AppendText("-");
 		break;
 	}
 	case 3:
 	{
-		tb->AppendText("3");
+		display->AppendText("1");
 		break;
 	}
 	case 4:
 	{
-		tb->AppendText("4");
+		display->AppendText("*");
 		break;
 	}
 	case 5:
 	{
-		tb->AppendText("5");
+		display->AppendText("5");
 		break;
 	}
 	case 6:
 	{
-		tb->AppendText("6");
+		display->AppendText("6");
 		break;
 	}
 	case 7:
 	{
-		tb->AppendText("7");
+		display->AppendText("7");
 		break;
 	}
 	case 8:
 	{
-		tb->AppendText("8");
+		display->AppendText("8");
 		break;
 	}
 	case 9:
 	{
-		tb->AppendText("9");
+		display->AppendText("9");
 		break;
 	}
 	case 10:
 	{
-		tb->AppendText("+");
+		display->AppendText("0");
 		//+
 		break;
 	}
 	case 11:
 	{
-		tb->AppendText("=");
+		display->AppendText("=");
 		//=
 		break;
 	}
@@ -140,25 +132,25 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	}
 	case 13:
 	{
-		tb->AppendText("c");
+		display->AppendText("3");
 		//c
 		break;
 	}
 	case 14:
 	{
-		tb->AppendText("-");
+		display->AppendText("2");
 		//-
 		break;
 	}
 	case 15:
 	{
-		tb->AppendText("*");
+		display->AppendText("4");
 		//*
 		break;
 	}
 	case 16:
 	{
-		tb->AppendText("/");
+		display->AppendText("/");
 		// /
 		break;
 	}
@@ -169,28 +161,28 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	}
 	case 18:
 	{
-		tb->AppendText("hex");
+		display->AppendText("hex");
 
 		//hex
 		break;
 	}
 	case 19:
 	{
-		tb->AppendText("dec");
+		display->AppendText("dec");
 
 		//dec 
 		break;
 	}
 	case 20:
 	{
-		tb->AppendText("bin");
+		display->AppendText("bin");
 
 		//bin 
 		break;
 	}
 	case 21:
 	{
-		tb->AppendText("mod");
+		display->AppendText("mod");
 
 		//mod
 		break;
