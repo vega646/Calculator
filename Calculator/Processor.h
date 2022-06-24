@@ -2,18 +2,26 @@
 #include <iostream>
 #include <string>
 #include "wx\wx.h"
+#include "IBaseCommand.h"
+#include "SumCommand.h"
+#include "DivisionCommand.h"
+#include "MultiplicationCommand.h"
+#include "SubtractionCommand.h"
 
 using namespace std;
 
 
-class Processor
+class Processor : public IBaseCommand
 {
 private:
 	Processor() {};
-	static Processor* _processor;
+	
 
 
 public:
+
+	static Processor* _processor;
+	vector<IBaseCommand*> commands;
 
 	string result;
 	double num1;
@@ -42,24 +50,33 @@ public:
 		}
 	}
 
-	double GetSum()
+	void SetData(int answer)
 	{
-		return Processor::num1 + Processor::num2;
+		result = to_string(answer);
 	}
 
-	double GetMult()
+	void GetSum()
 	{
-		return Processor::num1 * Processor::num2;
+		SumCommand* sc = new SumCommand(num1, num2);
+		commands.push_back(sc);
 	}
 
-	double GetDiv()
+	void GetMult()
 	{
-		return Processor::num1 / Processor::num2;
+		MultiplicationCommand* sc = new MultiplicationCommand(num1, num2);
+		commands.push_back(sc);
 	}
 
-	double GetSub()
+	void GetDiv()
 	{
-		return Processor::num1 - Processor::num2;
+		DivisionCommand *sc = new DivisionCommand(num1, num2);
+		commands.push_back(sc);
+	}
+
+	void GetSub()
+	{
+		SubtractionCommand* sc = new SubtractionCommand(num1, num2);
+		commands.push_back(sc);
 	}
 
 	void Equals( wxTextCtrl* t)
@@ -68,12 +85,16 @@ public:
 		t->AppendText(result);
 	}
 
-	string DoOps(string t, wxTextCtrl* x)
+	
+
+
+	void DoOps(string t, wxTextCtrl* x)
 	{
-		
 
 		string p;
 		p = x->GetValue();
+
+		Processor::num2 = stod(t);
 
 		char c = '+';
 		char i = '-';
@@ -82,28 +103,31 @@ public:
 
 		if (p.find(c) != string::npos)
 		{
-			Processor::num2 = stod(t);
-			return Processor::result = to_string(GetSum());
+			GetSum();
+
 		}
+
 		else if (p.find(i) != string::npos)
 		{
-			Processor::num2 = stod(t);
-			return Processor::result = to_string(GetSub());
+			GetSub();
 		}
 
 		else if (p.find(w) != string::npos)
 		{
-			Processor::num2 = stod(t);
-			return Processor::result = to_string(GetMult());
+			GetMult();
 		}
 		else if (p.find(z) != string::npos)
-		{
-			Processor::num2 = stod(t);
-			return Processor::result = to_string(GetDiv());
+		{			
+			GetDiv();
 		}
-		return "";
+		
+		for (int i = 0; i < commands.size(); i++)
+		{
+			commands[i]->Execute();
+			commands.clear();
+		}
 	}
 
 };
-Processor* Processor::_processor = nullptr;
+
 

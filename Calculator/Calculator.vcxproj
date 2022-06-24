@@ -117,6 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Widgets\wxWidgets\include;C:\Widgets\wxWidgets\include\msvc</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,12 +145,23 @@
     <ClInclude Include="ButtonFactory.h" />
     <ClInclude Include="cApp.h" />
     <ClInclude Include="cMain.h" />
+    <ClInclude Include="DivisionCommand.h" />
+    <ClInclude Include="IBaseCommand.h" />
+    <ClInclude Include="MultiplicationCommand.h" />
     <ClInclude Include="Processor.h" />
+    <ClInclude Include="SubtractionCommand.h" />
+    <ClInclude Include="SumCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ButtonFactory.cpp" />
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cMain.cpp" />
+    <ClCompile Include="DivisionCommand.cpp" />
+    <ClCompile Include="IBaseCommand.cpp" />
+    <ClCompile Include="MultiplicationCommand.cpp" />
+    <ClCompile Include="Processor.cpp" />
+    <ClCompile Include="SubtractionCommand.cpp" />
+    <ClCompile Include="SumCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Calculator.rc" />
