@@ -7,8 +7,6 @@
 class ButtonFactory
 {
 public:
-
-	
 	void CreateButton(wxGridSizer* x, cMain* p, int f, wxString o);
 };
 
