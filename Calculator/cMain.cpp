@@ -55,7 +55,6 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Estela's Calculator", wxPoint(-1, -
 	sizer->Add(gs, 1, wxEXPAND); 
 	this->SetSizer(sizer);
 
-	
 }
 
 cMain::~cMain()

@@ -14,9 +14,8 @@ using namespace std;
 class Processor : public IBaseCommand
 {
 private:
-	Processor() {};
-	
 
+	Processor() {};
 
 public:
 
@@ -40,7 +39,7 @@ public:
 	Processor(Processor& other) = delete; // copy const
 	void operator=(const Processor& other) = delete; //asignment op
 
-	void GetData(string x, int &count)
+	void GetData(string x, int& count)
 	{
 		count++;
 
@@ -69,7 +68,7 @@ public:
 
 	void GetDiv()
 	{
-		DivisionCommand *sc = new DivisionCommand(num1, num2);
+		DivisionCommand* sc = new DivisionCommand(num1, num2);
 		commands.push_back(sc);
 	}
 
@@ -79,13 +78,11 @@ public:
 		commands.push_back(sc);
 	}
 
-	void Equals( wxTextCtrl* t)
+	void Equals(wxTextCtrl* t)
 	{
 		t->Clear();
 		t->AppendText(result);
 	}
-
-	
 
 
 	void DoOps(string t, wxTextCtrl* x)
@@ -104,7 +101,6 @@ public:
 		if (p.find(c) != string::npos)
 		{
 			GetSum();
-
 		}
 
 		else if (p.find(i) != string::npos)
@@ -117,10 +113,10 @@ public:
 			GetMult();
 		}
 		else if (p.find(z) != string::npos)
-		{			
+		{
 			GetDiv();
 		}
-		
+
 		for (int i = 0; i < commands.size(); i++)
 		{
 			commands[i]->Execute();
